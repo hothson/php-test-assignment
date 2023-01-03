@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Site;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class SitesController extends Controller
 {
@@ -24,7 +23,12 @@ class SitesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $sites = $user->sites()->get();
+        if ($user->role === config('user.role.admin')) {
+            $sites = Site::get();
+        } else {
+            $sites = $user->sites()->get();
+        }
+
         return view('sites.index', [
             'sites' => $sites,
         ]);
