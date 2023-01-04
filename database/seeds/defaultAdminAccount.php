@@ -12,6 +12,11 @@ class defaultAdminAccount extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->where('email', 'client@example.com')->update(['role' => 'admin']);
+        \App\User::create([
+            'email' => 'admin@example.com',
+            'password' => bcrypt('12345678'),
+            'name' => 'Admin',
+            'role' => 'admin',
+        ]);
     }
 }
