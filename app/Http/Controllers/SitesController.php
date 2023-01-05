@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SiteExport;
 use App\Site;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SitesController extends Controller
 {
@@ -64,8 +68,8 @@ class SitesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -82,8 +86,8 @@ class SitesController extends Controller
     /**
      * Show the detail of a site.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
     public function show(Request $request): View
     {
@@ -105,5 +109,16 @@ class SitesController extends Controller
         }
 
         return view('sites.show', ['site' => $site]);
+    }
+
+    /**
+     * Export sites to CSV
+     *
+     * @param Request $request
+     * @return BinaryFileResponse
+     */
+    public function exportCSV(Request $request): BinaryFileResponse
+    {
+        return Excel::download(new SiteExport(), 'site.csv');
     }
 }

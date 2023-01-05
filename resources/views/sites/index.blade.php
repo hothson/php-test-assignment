@@ -50,6 +50,10 @@
                         <div class="text-center">
                             <a class="btn btn-primary" href="/sites/create">New site</a>
                         </div>
+                        <hr>
+                        <div class="text-center">
+                            <a class="btn btn-primary" href="{{ route('exportCSV') }}">Export CSV</a>
+                        </div>
                 </div>
             </div>
         </div>
