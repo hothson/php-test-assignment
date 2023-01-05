@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static get()
+ */
 class Site extends Model
 {
     protected $fillable = [

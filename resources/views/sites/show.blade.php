@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <ol class="breadcrumb breadcrumb-style1 mg-b-0">
                         <li class="breadcrumb-item active" aria-current="page">
-                            Sites
+                            Site
                         </li>
                     </ol>
                 </div>
@@ -20,7 +20,6 @@
                         </div>
                     @endif
 
-                    @if(count($sites))
                         <table class="table">
                             <thead>
                                 <tr>
@@ -30,30 +29,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($sites as $site)
                                 <tr>
                                     <td>{{ $site->id }}</td>
                                     <td>
                                         <a href="/sites/{{ $site->id }}">{{ $site->name }}</a>
                                     </td>
-                                    <td>Vessel</td>
+                                    <td>{{ $site->type }}</td>
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
-                    @else
-                        <div class="text-center">
-                            <p>You have not created any sites yet.</p>
-                        </div>
-                    @endif
-                        <hr>
-                        <div class="text-center">
-                            <a class="btn btn-primary" href="/sites/create">New site</a>
-                        </div>
-                        <hr>
-                        <div class="text-center">
-                            <a class="btn btn-primary" href="{{ route('exportCSV') }}">Export CSV</a>
-                        </div>
                 </div>
             </div>
         </div>

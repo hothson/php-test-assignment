@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('sites', 'SitesController');
+
+Route::get('exportCSV', "SitesController@exportCSV")->name('exportCSV');
